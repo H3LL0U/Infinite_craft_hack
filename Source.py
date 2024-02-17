@@ -3,8 +3,8 @@ import requests_html
 from nltk.corpus import wordnet
 import nltk
 from typing import Generator
-
-
+from tkinter_widgets import *
+import tkinter as tk
 
 def get_nouns(Word_count = 0) -> Generator[str, None, None]: 
         
@@ -31,7 +31,15 @@ def words_to_items(words: list) -> str:
     
 
 if __name__ == "__main__":
-    while True:
+
+    main_window = window()
+
+
+
+    
+    main_window.mainloop()
+    
+'''    while True:
         try:
             iterations = int(input("How many extra words do you want to get?\n"))
             break
@@ -43,3 +51,4 @@ if __name__ == "__main__":
     with open("items.txt", "a") as file:
         file.write(words_to_items(words = words).replace("\\","'"))
         print("saved to items.txt")
+'''

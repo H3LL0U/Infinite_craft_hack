@@ -3,8 +3,16 @@ import requests
 
 
 
-s = requests.Session()
-def combine_two(first, second):
+
+def combine_two(first: str, second: str, cookie1: str, cookie2: str, s = requests.Session)->str:
+    '''
+    first = a word that you want to combine
+    second = another word you want to combine
+    cookie1 = a cookie _ga from your browser
+    cookie2 = a cookie _ga_L7MJCSDHKV from your browser
+    s = session of the request (can remain as it is)
+    output --> a response from the server
+    '''
     request = s.get(f"https://neal.fun/api/infinite-craft/pair?first={first}&second={second}",
     headers={
         "accept": "*/*",
@@ -19,12 +27,11 @@ def combine_two(first, second):
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36"
     },
     cookies={
-        "_ga": input("enter _ga cookie:\n"),
-        "_ga_L7MJCSDHKV": "enter _ga_L7MJCSDHKV cookie:\n"
+        "_ga": cookie1,
+        "_ga_L7MJCSDHKV": cookie2
     },
     auth=(),
 )
 
 
     return((request.text))
-print(combine_two("LALA", "LALA"))
