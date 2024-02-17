@@ -1,7 +1,43 @@
 import requests
+import requests
+import requests_html
+from nltk.corpus import wordnet
+import nltk
+from typing import Generator
+
+def get_nouns(Word_count = 0) -> Generator[str, None, None]: 
+        '''
+        Word_count = how many words to generate up to 146347
+
+        output: A list of random nouns with a space at the end(see words_to_items() function). (they are going to still be the same on each function call)
+
+        if the value is set under 0 returns a list of 146347 words
 
 
 
+        ''' 
+    
+        
+        for synset in wordnet.all_synsets(pos=wordnet.NOUN):
+            for lemma in synset.lemmas():
+                noun_name = lemma.name().replace("_", " ") 
+                yield noun_name + " "
+                
+                Word_count-=1
+                if Word_count==0:
+                    return
+                    
+             
+def words_to_items(words: list) -> str:
+    '''
+    Takes in a list of words and returns a json string that can be put in local storage at the https://neal.fun/infinite-craft/ website
+    the ending character of the word is interpreted as an emoji and is not going to appear in the string
+    Words Water, Fire, Wind and Earth are automatically added
+    '''
+    main_words = ["Water ", "Fire ", "Wind ", "Earth "]
+    items = [f'{{"text":"{word[:-1]}","emoji":"{word[-1]}","discovered":false}}' for word in main_words]
+    items += [f'{{"text": "{word[:-1]}","emoji":"{word[-1]}"}}' for word in words]
+    return f'{{"elements":{items}}}'.replace("'", "")
 
 
 def combine_two(first: str, second: str, cookie1: str, cookie2: str, s = requests.Session)->str:

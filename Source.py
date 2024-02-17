@@ -1,31 +1,6 @@
-import requests
-import requests_html
-from nltk.corpus import wordnet
-import nltk
-from typing import Generator
 from tkinter_widgets import *
 import tkinter as tk
-
-def get_nouns(Word_count = 0) -> Generator[str, None, None]: 
-        
-    
-        
-        for synset in wordnet.all_synsets(pos=wordnet.NOUN):
-            for lemma in synset.lemmas():
-                noun_name = lemma.name().replace("_", " ") 
-                yield noun_name + " "
-                
-                Word_count-=1
-                if Word_count<=0:
-                    return
-                    
-                    
-def words_to_items(words: list) -> str:
-    
-    main_words = ["Water ", "Fire ", "Wind ", "Earth "]
-    items = [f'{{"text":"{word[:-1]}","emoji":"{word[-1]}","discovered":false}}' for word in main_words]
-    items += [f'{{"text": "{word[:-1]}","emoji":"{word[-1]}"}}' for word in words]
-    return f'{{"elements":{items}}}'.replace("'", "")
+from functions import words_to_items , get_nouns
 
 
     
@@ -36,7 +11,7 @@ if __name__ == "__main__":
 
 
 
-    
+
     main_window.mainloop()
     
 '''    while True:
