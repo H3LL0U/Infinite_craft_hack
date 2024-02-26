@@ -6,10 +6,11 @@ from functions import words_to_items , get_nouns
     
 
 if __name__ == "__main__":
-
+    
     main_window = window()
-
-
+    
+    noun_selector_area = Number_Of_Words_Selector(main_window)
+    
 
 
     main_window.mainloop()

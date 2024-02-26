@@ -1,5 +1,5 @@
-This application generates json text which can be pasted into local storage
+This prrogram generates json text which can be pasted into the command line in the browser
 at https://neal.fun/infinite-craft/ to have a lot of crafts from the start
 
 
-the file to copy to Local storage is saved to items.txt
+the file to copy and paste to the command line is saved to generated code.txt
